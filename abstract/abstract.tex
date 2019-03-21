@@ -1,0 +1,104 @@
+\documentclass[11pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{caption} % for table captions
+\usepackage{amsmath} % for multi - line equations and piecewises
+\usepackage{graphicx}
+%\usepackage{textcomp}
+\usepackage{xspace}
+\usepackage{verbatim} % for block comments
+%\usepackage{subfig} % for subfigures
+\usepackage{enumitem} % for a) b) c) lists
+\newcommand{\Cyclus}{\textsc{Cyclus}\xspace} %
+\newcommand{\Cycamore}{\textsc{Cycamore}\xspace} %
+\usepackage{tabularx}
+\usepackage{color}
+\usepackage{setspace}
+\definecolor{bg}{rgb}{0.95, 0.95, 0.95}
+\newcolumntype{b}{X}
+\newcolumntype{f}{ > {\hsize=.15\hsize}X}
+\newcolumntype{s}{ > {\hsize=.5\hsize}X}
+\newcolumntype{m}{ > {\hsize=.75\hsize}X}
+\newcolumntype{r}{ > {\hsize=1.1\hsize}X}
+\usepackage{titling}
+\usepackage[hang, flushmargin]{footmisc}
+\renewcommand *\footnoterule{}
+\graphicspath{{images /}}
+
+\title{Developing back-end capabilities in Cyclus, a fuel cycle simulator
+        \\ \vspace{0.5em} TWOFCS2019 Abstract}
+\author{Gwendolyn J. Chee}
+
+
+\begin{document}
+	\maketitle
+	\hrule
+
+\section * {}
+\doublespacing
+Implementation of a nuclear waste disposal plan and minimizing the cost of the 
+nuclear fuel cycle are crucial to the future use of nuclear power 
+\cite{massachusetts_institute_of_technology_future_2003}. 
+If the U.S. nuclear industry does not find an effective and safe plan to manage 
+the waste, the nuclear industry will continue facing political and social 
+opposition. 
+It has been shown that permanent underground disposal of nuclear waste provides
+excellent isolation from the human-inhabited environment 
+\cite{rechard_evolution_2014}. 
+A once-through fuel cycle is also more economic and proliferation-resistant than 
+a closed fuel cycle that makes use of reprocessing technology
+\cite{massachusetts_institute_of_technology_future_2003}.
+Therefore, this work relies on the expectation that the chosen method of long 
+term disposal of spent nuclear fuel (SNF) will be a deep geologic repository. 
+
+Previous work towards the wicked problem of getting spent nuclear fuel from reactor 
+sites to a final waste repository focuses on how different waste acceptance strategies 
+impact economic expenditure \cite{nesbit_proposed_2015}, pre-emplacement 
+surface storage time, waste package size, and repository 
+footprint \cite{greenberg_application_2012}. 
+There has also been efforts to holistically evaluate the entire system to consolidate 
+how each factor impact the cost and safety of moving SNF from 
+reactor sites to the final waste repository \cite{nutt_waste_2015}.
+Previous work in studying repository loading have used spent fuel assemblies 
+that have an average burn up composition \cite{johnson_optimizing_2016} 
+to evaluate the heat load in the repository \cite{greenberg_application_2012}. 
+
+Therefore, instead of using average SNF composition, this work aims to use U.S. 
+historical SNF inventory data \cite{peterson_unf_standards_2017} in various 
+simulations to study how waste acceptance strategies impacts the heat distribution
+in the repository. 
+This research aims to contribute realistic modeling tools for simulating how 
+waste acceptance strategies impact the heat distribution in the repository 
+since most of the current research is focused on the economic and 
+transportation components of the problem. 
+
+These simulations will be performed using \textsc{Cyclus}, an 
+\textit{agent-based} fuel cycle simulation framework. 
+In \textsc{Cyclus}, each facility in the fuel cycle is modeled individually 
+and they interact with one another as independent \textit{agents}. 
+The goal of this work is to develop a waste conditioning \textit{agent}, 
+an interim storage \textit{agent} and a waste repository \textit{agent} 
+to provide \textsc{Cyclus} with the capabilities to run these simulations. 
+Previously, a repository agent was created \cite{huff_cyclus_2013}, however, 
+it is no longer compatible with the current \textsc{Cyclus} and 
+did not have the capabilities to run these proposed simulations.  
+
+The conditioning facility packages spent fuel assemblies into a waste canister 
+that has user defined properties such as radius length and material thermal 
+conductivity. 
+The repository facility emplaces waste canisters in the repository in a
+systematic order. 
+It only accepts canisters that results in the repository 
+remaining below the thermal limit of the host geologic media. 
+It provides the user with a spatial and time dependent temperature 
+distribution in the repository. 
+The interim storage facility is the brains of the operation and gives 
+waste canisters to the repository facility to emplace based on a waste 
+acceptance strategy. 
+First-in-first-out and last-in-first-out fuel allocation strategies 
+are considered. 
+
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography.bib}
+
+\end{document}
